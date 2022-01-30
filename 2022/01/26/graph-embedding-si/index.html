@@ -96,13 +96,6 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">Monologue</a>
                         </li>
                         
@@ -111,6 +104,13 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -213,7 +213,15 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h1><ul>
+                <h1 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h1><div align="justify">
+
+<p>This notebook is implemented based on paper Billion-scale Commodity Embedding for E-commerce Recommendation.</p>
+<p>In Taobao, milion of new items are continously uploaded each hour. There are no user behaviors for these items. Learning item representation is important for matching, ranking in order to recommend these items to user. Collaborative Filtering based methods is only computed co-occurence of items in user history behavior. It is quite challenge to learn item representation with few or even no interactions.</p>
+<p>Authors proposed new approach: Incorporate side-information to enhance embedding vectors, dubbed Graph Embedding with Side Information. For example, items with same brands or category should be closer in embedding space</p>
+<p>Throughout the rest of this notebook, we will develop a model which incorporate side information into graph embedding and test model with new items not in the dataset to see the performance</p>
+</div>
+
+<ul>
 <li><p><a href="#chapter1">Cold Start Recommendation</a></p>
 <ul>
 <li><p><a href="#chapter1_1">Preparation</a></p>
@@ -240,15 +248,7 @@
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Set fixed seed</span></span><br><span class="line">random_state = <span class="number">4111</span></span><br><span class="line">torch.manual_seed(random_state)</span><br><span class="line">random.seed(random_state)</span><br><span class="line">np.random.seed(random_state)</span><br></pre></td></tr></table></figure>
 
-<h1 id="Cold-Start-Recommendation"><a href="#Cold-Start-Recommendation" class="headerlink" title="Cold Start Recommendation "></a>Cold Start Recommendation <a class="anchor" id="chapter1"></a></h1><div align="justify">
-
-<p>This notebook is implemented based on paper Billion-scale Commodity Embedding for E-commerce Recommendation.</p>
-<p>In Taobao, milion of new items are continously uploaded each hour. There are no user behaviors for these items. Learning item representation is important for matching, ranking in order to recommend these items to user. Collaborative Filtering based methods is only computed co-occurence of items in user history behavior. It is quite challenge to learn item representation with few or even no interactions.</p>
-<p>Authors proposed new approach: Incorporate side-information to enhance embedding vectors, dubbed Graph Embedding with Side Information. For example, items with same brands or category should be closer in embedding space</p>
-<p>Throughout the rest of this notebook, we will develop a model which incorporate side information into graph embedding and test model with new items not in the dataset to see the performance</p>
-</div>
-
-<h2 id="Preparation"><a href="#Preparation" class="headerlink" title="Preparation "></a>Preparation <a class="anchor" id="chapter1_1"></a></h2><p>We will use public available movielen throughout this experiment. At time of writing, dataset movielen25m is up-to-date and contains lots of samples. You can download via this <a target="_blank" rel="noopener" href="https://files.grouplens.org/datasets/movielens/ml-25m.zip">link</a></p>
+<h1 id="Cold-Start-Recommendation"><a href="#Cold-Start-Recommendation" class="headerlink" title="Cold Start Recommendation "></a>Cold Start Recommendation <a class="anchor" id="chapter1"></a></h1><h2 id="Preparation"><a href="#Preparation" class="headerlink" title="Preparation "></a>Preparation <a class="anchor" id="chapter1_1"></a></h2><p>We will use public available movielen throughout this experiment. At time of writing, dataset movielen25m is up-to-date and contains lots of samples. You can download via this <a target="_blank" rel="noopener" href="https://files.grouplens.org/datasets/movielens/ml-25m.zip">link</a></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># !wget https://files.grouplens.org/datasets/movielens/ml-25m.zip</span></span><br><span class="line"><span class="comment"># !unzip ml-25m.zip</span></span><br></pre></td></tr></table></figure>
 
 <p>Given this dataset, we have few code chunks to clean and preprocess the data.</p>

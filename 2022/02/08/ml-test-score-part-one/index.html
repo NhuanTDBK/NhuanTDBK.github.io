@@ -13,11 +13,11 @@
 
     <title>
         
-          Steve Universe | Steve Universe&#39;s Blog
+          What is your ML Test Score? - Steve Universe | Steve Universe&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://nhuantdbk.github.io/">
+    <link rel="canonical" href="https://nhuantdbk.github.io/2022/02/08/ml-test-score-part-one/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -153,183 +153,203 @@
 
 
     <!-- Main Content -->
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://nhuantdbk.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>Steve Universe</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">Data Talk</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                    </div>
+                    <h1>What is your ML Test Score?</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Steve Tran on
+                        2022-02-08
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
-
-<!-- USE SIDEBAR -->
     <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-            
-                <!-- Main Content -->
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-
-<div class="post-preview">
-
-    <a href="/2022/02/08/ml-test-score-part-one/">
-        <h2 class="post-title">
-            What is your ML Test Score?
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <!-- <div class="post-content-preview">
-            
-Machine learning needs to test
-Manually coded system vs ML-based systems
-Tests
-Data
-Model Development
-ML Infra
-Monitoring
-
-
-How to calculate score
-
-
-Conclusion
-References
-
-Machine learning needs t......
-        </div> -->
-    </a>
-    <p class="post-meta">
-        Posted by Steve Tran on
-        2022-02-08
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2022/01/26/graph-embedding-si/">
-        <h2 class="post-title">
-            Graph Embedding with Side Information
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <!-- <div class="post-content-preview">
-            Content
-
-This notebook is implemented based on paper Billion-scale Commodity Embedding for E-commerce Recommendation.
-In Taobao, milion of new items are continously uploaded each hour. There are no......
-        </div> -->
-    </a>
-    <p class="post-meta">
-        Posted by Steve Tran on
-        2022-01-26
-    </p>
-
-</div>
-<hr>
-
-
-
-<!-- Pager -->
-
-<ul class="pager">
-    
-    
+                <ul>
+<li><a href="#machine-learning-needs-to-test">Machine learning needs to test</a><ul>
+<li><a href="#manually-coded-system-vs-ml-based-systems">Manually coded system vs ML-based systems</a></li>
+<li><a href="#tests">Tests</a><ul>
+<li><a href="#data">Data</a></li>
+<li><a href="#model-development">Model Development</a></li>
+<li><a href="#ml-infra">ML Infra</a></li>
+<li><a href="#monitoring">Monitoring</a></li>
+</ul>
+</li>
+<li><a href="#how-to-calculate-score">How to calculate score</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+<h1 id="Machine-learning-needs-to-test"><a href="#Machine-learning-needs-to-test" class="headerlink" title="Machine learning needs to test"></a>Machine learning needs to test</h1><blockquote>
+<p><em>Creating reliable, production-level machine learning systems brings on a host of concerns not found in small toy examples or even large offline research experiments. Testing and monitoring are key considerations for ensuring the production-readiness of an ML system,and for reducing technical debt of ML systems. “</em> - <a target="_blank" rel="noopener" href="https://storage.googleapis.com/pub-tools-public-publication-data/pdf/aad9f93b86b7addfea4c419b9100c6cdd26cacea.pdf">The ML Test Score: A Rubric for ML Production Readiness and Technical Debt Reduction</a></p>
+</blockquote>
+<p>As machine learning (ML) systems take on more important role in software development on production-level, reliability is one of most things to concert about. Testing is crucial thing on production for correctness, delivering user experience.</p>
+<p>In this post, I will summarize some key points of paper and put some personal notes on.</p>
+<h2 id="Manually-coded-system-vs-ML-based-systems"><a href="#Manually-coded-system-vs-ML-based-systems" class="headerlink" title="Manually coded system vs ML-based systems"></a>Manually coded system vs ML-based systems</h2><p><img src="/2022/02/08/ml-test-score-part-one/ML_comparision.png" alt="alt text" title="Title"></p>
+<p>ML system strongly depends both data and code. Training data needs to consider like code such as versioning, testing and trained ML needs production practices like a binary such as debuggability, rollbacks and monitorings. So beside regular software tests such as unit tests, integrations tests, system monitoring, we need to add more tests about data, trained model</p>
+<h2 id="Tests"><a href="#Tests" class="headerlink" title="Tests"></a>Tests</h2><h3 id="Data"><a href="#Data" class="headerlink" title="Data"></a>Data</h3><ul>
+<li>Feature Expectations are captured in schema</li>
+<li>All features are beneficial</li>
+<li>No features cost is too much</li>
+<li>Features adhere to meta-level requirements</li>
+<li>The data pipeline has appropriate privacy controls</li>
+<li>New features can be added quickly</li>
+<li>All input features code is tested</li>
+</ul>
+<h3 id="Model-Development"><a href="#Model-Development" class="headerlink" title="Model Development"></a>Model Development</h3><ul>
+<li>Model specs are reviewed and submittedµ </li>
+<li>Offline and online metrics are correlated</li>
+<li>All hyper-parameters are tuned</li>
+<li>The impact of model staleness are known</li>
+<li>A simpler model is not better</li>
+<li>Model quality is sufficient on important slices</li>
+<li>Model is tested for consideration of inclusion</li>
+</ul>
+<h3 id="ML-Infra"><a href="#ML-Infra" class="headerlink" title="ML Infra"></a>ML Infra</h3><ul>
+<li>Training is reproducible </li>
+<li>ML specs are unit tested</li>
+<li>ML Pipeline is integration tested</li>
+<li>Model quality is validated before serving</li>
+<li>The model is debuggable</li>
+<li>Models are canaried before deploying</li>
+<li>Serving models can be rollbacked</li>
+</ul>
+<h3 id="Monitoring"><a href="#Monitoring" class="headerlink" title="Monitoring"></a>Monitoring</h3><ul>
+<li>Dependency changes results in notification</li>
+<li>Data invariants hold for input</li>
+<li>Training and serving are not skewed</li>
+<li>Models are not stale</li>
+<li>Models are numerically stable</li>
+<li>Computing performance has not regressed</li>
+<li>Prediction quality has not regressed</li>
+</ul>
+<h2 id="How-to-calculate-score"><a href="#How-to-calculate-score" class="headerlink" title="How to calculate score"></a>How to calculate score</h2><p>The final test score is computed as follows:</p>
+<ul>
+<li>For each test, half a point is awarded for executing the test manually, with the results documented and distributed</li>
+<li>A full point is awarded if there is a system in place to run that test automatically on a repeated basis</li>
+<li>Sum the score for each of the 4 sections individually</li>
+<li>The final ML Test Score is computed by taking the minimum of the scores aggregated for each of the 4 sections</li>
+</ul>
+<p>Interpretable of score after calculated</p>
+<p><img src="ml-test-score-part-one%5Cscore_level.png" alt="alt text" title="Title"></p>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>We just go through how ML systems can be tested on production, from data to monitoring to make sure its functional well. In next blog, I will walkthrough and write some codes to demonstrate the ideas of ML testing. </p>
+<p>Stay tuned</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://research.google/pubs/pub46555/">ML score</a></li>
+<li> <a target="_blank" rel="noopener" href="https://www.slideshare.net/justinbasilico/making-netflix-machine-learning-algorithms-reliable">Netflix score</a></li>
 </ul>
 
 
+                <hr>
 
-                <!-- 如果开启评论功能 -->
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2022/01/26/graph-embedding-si/" data-toggle="tooltip" data-placement="top" title="Graph Embedding with Side Information">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
                 
 
             </div>
+    <!-- Side Catalog Container -->
+        
+
     <!-- Sidebar Container -->
+
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-
-                        
-                            <img src="/img/avatar.jpeg" />
-                        
-
-                        
-                            <p>In data we trust</p>
-                        
-
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            
-
-                            
-
-                            
-
-                            
-                                <li>
-                                    <a target="_blank"  href="https://github.com/NhuanTDBK">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-                            
-                            
-                            
-                                <li>
-                                    <a target="_blank"  href="https://www.linkedin.com/in/nhuantranduc">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-                        </ul>
-                    </div>
-                </section>
-                
                 <!-- Friends Blog -->
                 
             </div>
-        
+
+        </div>
     </div>
-</div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->

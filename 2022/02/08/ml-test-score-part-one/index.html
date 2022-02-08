@@ -103,14 +103,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -216,7 +216,7 @@
 </blockquote>
 <p>As machine learning (ML) systems take on more important role in software development on production-level, reliability is one of most things to concert about. Testing is crucial thing on production for correctness, delivering user experience.</p>
 <p>In this post, I will summarize some key points of paper and put some personal notes on.</p>
-<h2 id="Manually-coded-system-vs-ML-based-systems"><a href="#Manually-coded-system-vs-ML-based-systems" class="headerlink" title="Manually coded system vs ML-based systems"></a>Manually coded system vs ML-based systems</h2><p><img src="/2022/02/08/ml-test-score-part-one/ML_comparision.png" alt="alt text" title="Title"></p>
+<h2 id="Manually-coded-system-vs-ML-based-systems"><a href="#Manually-coded-system-vs-ML-based-systems" class="headerlink" title="Manually coded system vs ML-based systems"></a>Manually coded system vs ML-based systems</h2><p><img src="/2022/02/08/ml-test-score-part-one/ML_comparision.png" alt="ML test" title="Title"></p>
 <p>ML system strongly depends both data and code. Training data needs to consider like code such as versioning, testing and trained ML needs production practices like a binary such as debuggability, rollbacks and monitorings. So beside regular software tests such as unit tests, integrations tests, system monitoring, we need to add more tests about data, trained model</p>
 <h2 id="Tests"><a href="#Tests" class="headerlink" title="Tests"></a>Tests</h2><h3 id="Data"><a href="#Data" class="headerlink" title="Data"></a>Data</h3><ul>
 <li>Feature Expectations are captured in schema</li>
@@ -262,7 +262,7 @@
 <li>The final ML Test Score is computed by taking the minimum of the scores aggregated for each of the 4 sections</li>
 </ul>
 <p>Interpretable of score after calculated</p>
-<p><img src="ml-test-score-part-one%5Cscore_level.png" alt="alt text" title="Title"></p>
+<p><img src="/2022/02/08/ml-test-score-part-one/score_level.png" alt="Score level" title="Title"></p>
 <h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>We just go through how ML systems can be tested on production, from data to monitoring to make sure its functional well. In next blog, I will walkthrough and write some codes to demonstrate the ideas of ML testing. </p>
 <p>Stay tuned</p>
 <h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>

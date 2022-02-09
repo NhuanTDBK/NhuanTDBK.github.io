@@ -39,14 +39,6 @@
     <!-- Hux change font-awesome CDN to qiniu -->
     <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-
-    <!-- Hux Delete, sad but pending in China
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
-    css'>
-    -->
-
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -103,14 +95,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -154,14 +146,10 @@
 
     <!-- Main Content -->
     
-<!-- Image to hack wechat -->
-<!-- <img src="https://nhuantdbk.github.io/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
-
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('/img/home-bg.jpg')
+        background-image: url('/img/tag-bg.jpg')
     }
 </style>
 <header class="intro-header" >
@@ -170,6 +158,12 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
                     <div class="tags">
+                        
+                          <a class="tag" href="/tags/#ml" title="ml">ml</a>
+                        
+                          <a class="tag" href="/tags/#test" title="test">test</a>
+                        
+                          <a class="tag" href="/tags/#production" title="production">production</a>
                         
                     </div>
                     <h1>What is your ML Test Score?</h1>
@@ -195,7 +189,11 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <ul>
+                <div class="toc">
+
+<!-- toc -->
+
+<ul>
 <li><a href="#machine-learning-needs-to-test">Machine learning needs to test</a><ul>
 <li><a href="#manually-coded-system-vs-ml-based-systems">Manually coded system vs ML-based systems</a></li>
 <li><a href="#tests">Tests</a><ul>
@@ -211,14 +209,18 @@
 <li><a href="#conclusion">Conclusion</a></li>
 <li><a href="#references">References</a></li>
 </ul>
-<h1 id="Machine-learning-needs-to-test"><a href="#Machine-learning-needs-to-test" class="headerlink" title="Machine learning needs to test"></a>Machine learning needs to test</h1><blockquote>
+<!-- tocstop -->
+
+</div>
+
+<h1><a href="#machine-learning-needs-to-test" class="header-anchor"></a><span id="machine-learning-needs-to-test">Machine learning needs to test</span></h1><blockquote>
 <p><em>Creating reliable, production-level machine learning systems brings on a host of concerns not found in small toy examples or even large offline research experiments. Testing and monitoring are key considerations for ensuring the production-readiness of an ML system,and for reducing technical debt of ML systems. “</em> - <a target="_blank" rel="noopener" href="https://storage.googleapis.com/pub-tools-public-publication-data/pdf/aad9f93b86b7addfea4c419b9100c6cdd26cacea.pdf">The ML Test Score: A Rubric for ML Production Readiness and Technical Debt Reduction</a></p>
 </blockquote>
 <p>As machine learning (ML) systems take on more important role in software development on production-level, reliability is one of most things to concert about. Testing is crucial thing on production for correctness, delivering user experience.</p>
 <p>In this post, I will summarize some key points of paper and put some personal notes on.</p>
-<h2 id="Manually-coded-system-vs-ML-based-systems"><a href="#Manually-coded-system-vs-ML-based-systems" class="headerlink" title="Manually coded system vs ML-based systems"></a>Manually coded system vs ML-based systems</h2><p><img src="/2022/02/08/ml-test-score-part-one/ML_comparision.png" alt="ML test" title="Title"></p>
+<h2><a href="#manually-coded-system-vs-ml-based-systems" class="header-anchor"></a><span id="manually-coded-system-vs-ml-based-systems">Manually coded system vs ML-based systems</span></h2><p><img src="/2022/02/08/ml-test-score-part-one/ML_comparision.png" alt="ML test" title="Title"></p>
 <p>ML system strongly depends both data and code. Training data needs to consider like code such as versioning, testing and trained ML needs production practices like a binary such as debuggability, rollbacks and monitorings. So beside regular software tests such as unit tests, integrations tests, system monitoring, we need to add more tests about data, trained model</p>
-<h2 id="Tests"><a href="#Tests" class="headerlink" title="Tests"></a>Tests</h2><h3 id="Data"><a href="#Data" class="headerlink" title="Data"></a>Data</h3><ul>
+<h2><a href="#tests" class="header-anchor"></a><span id="tests">Tests</span></h2><h3><a href="#data" class="header-anchor"></a><span id="data">Data</span></h3><ul>
 <li>Feature Expectations are captured in schema</li>
 <li>All features are beneficial</li>
 <li>No features cost is too much</li>
@@ -227,7 +229,7 @@
 <li>New features can be added quickly</li>
 <li>All input features code is tested</li>
 </ul>
-<h3 id="Model-Development"><a href="#Model-Development" class="headerlink" title="Model Development"></a>Model Development</h3><ul>
+<h3><a href="#model-development" class="header-anchor"></a><span id="model-development">Model Development</span></h3><ul>
 <li>Model specs are reviewed and submittedµ </li>
 <li>Offline and online metrics are correlated</li>
 <li>All hyper-parameters are tuned</li>
@@ -236,7 +238,7 @@
 <li>Model quality is sufficient on important slices</li>
 <li>Model is tested for consideration of inclusion</li>
 </ul>
-<h3 id="ML-Infra"><a href="#ML-Infra" class="headerlink" title="ML Infra"></a>ML Infra</h3><ul>
+<h3><a href="#ml-infra" class="header-anchor"></a><span id="ml-infra">ML Infra</span></h3><ul>
 <li>Training is reproducible </li>
 <li>ML specs are unit tested</li>
 <li>ML Pipeline is integration tested</li>
@@ -245,7 +247,7 @@
 <li>Models are canaried before deploying</li>
 <li>Serving models can be rollbacked</li>
 </ul>
-<h3 id="Monitoring"><a href="#Monitoring" class="headerlink" title="Monitoring"></a>Monitoring</h3><ul>
+<h3><a href="#monitoring" class="header-anchor"></a><span id="monitoring">Monitoring</span></h3><ul>
 <li>Dependency changes results in notification</li>
 <li>Data invariants hold for input</li>
 <li>Training and serving are not skewed</li>
@@ -254,7 +256,7 @@
 <li>Computing performance has not regressed</li>
 <li>Prediction quality has not regressed</li>
 </ul>
-<h2 id="How-to-calculate-score"><a href="#How-to-calculate-score" class="headerlink" title="How to calculate score"></a>How to calculate score</h2><p>The final test score is computed as follows:</p>
+<h2><a href="#how-to-calculate-score" class="header-anchor"></a><span id="how-to-calculate-score">How to calculate score</span></h2><p>The final test score is computed as follows:</p>
 <ul>
 <li>For each test, half a point is awarded for executing the test manually, with the results documented and distributed</li>
 <li>A full point is awarded if there is a system in place to run that test automatically on a repeated basis</li>
@@ -263,17 +265,15 @@
 </ul>
 <p>Interpretable of score after calculated</p>
 <p><img src="/2022/02/08/ml-test-score-part-one/score_level.png" alt="Score level" title="Title"></p>
-<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>We just go through how ML systems can be tested on production, from data to monitoring to make sure its functional well. In next blog, I will walkthrough and write some codes to demonstrate the ideas of ML testing. </p>
+<h1><a href="#conclusion" class="header-anchor"></a><span id="conclusion">Conclusion</span></h1><p>We just go through how ML systems can be tested on production, from data to monitoring to make sure its functional well. In next blog, I will walkthrough and write some codes to demonstrate the ideas of ML testing. </p>
 <p>Stay tuned</p>
-<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<h1><a href="#references" class="header-anchor"></a><span id="references">References</span></h1><ul>
 <li><a target="_blank" rel="noopener" href="https://research.google/pubs/pub46555/">ML score</a></li>
 <li> <a target="_blank" rel="noopener" href="https://www.slideshare.net/justinbasilico/making-netflix-machine-learning-algorithms-reliable">Netflix score</a></li>
 </ul>
 
 
                 <hr>
-
-                
 
                 <ul class="pager">
                     
@@ -283,10 +283,6 @@
                         </li>
                     
                 </ul>
-
-                
-
-                
 
             </div>
     <!-- Side Catalog Container -->
@@ -311,44 +307,6 @@
 </article>
 
 
-
-
-
-
-
-<!-- async load function -->
-<script>
-    function async(u, c) {
-      var d = document, t = 'script',
-          o = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
-</script>
-<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
-<script>
-    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
-        anchors.options = {
-          visible: 'always',
-          placement: 'right',
-          icon: '#'
-        };
-        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
-    })
-</script>
-<style>
-    /* place left on bigger screen */
-    @media all and (min-width: 800px) {
-        .anchorjs-link{
-            position: absolute;
-            left: -0.75em;
-            font-size: 1.1em;
-            margin-top : -0.1em;
-        }
-    }
-</style>
 
 
 
@@ -482,9 +440,22 @@
 <!-- Google Analytics -->
 
 
+<script>
+    // dynamic User by Hux
+    var _gaId = 'G-BFC0PXTRRT';
+    var _gaDomain = 'nhuantdbk.github.io';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
 
 
-<!-- Baidu Tongji -->
 
 
 <!-- Side Catalog -->

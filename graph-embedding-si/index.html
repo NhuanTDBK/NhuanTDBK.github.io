@@ -253,8 +253,8 @@ Throughout the rest of this notebook, we will develop a model which incorporate 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">!wget https://files.grouplens.org/datasets/movielens/ml-25m.<span class="built_in">zip</span></span><br><span class="line">!unzip ml-25m.<span class="built_in">zip</span></span><br></pre></td></tr></table></figure>
 <p>Given this dataset, we have few code chunks to clean and preprocess the data.</p>
 <ul>
-<li>The raw <code>movies.csv</code> contains movie_id, movie title and genres. We will convert movie_id into ordinal ids, lowercase and split genres into array of string</li>
-<li>The raw <code>tags.csv</code> contains user_id, movie_id, tag and timestamp. We will drop null tag, convert to lowercase and aggregate tags by movie</li>
+<li>The raw <code>movies.csv</code> contains movie_id, movie title and genres. We will convert movie_id into ordinal ids, lowercase and split genres into array of string </li>
+<li>The raw <code>tags.csv</code> contains user_id, movie_id, tag and timestamp. We will drop null tag, convert to lowercase and aggregate tags by movie </li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df_entity = pd.read_csv(<span class="string">&quot;ml-25m/movies.csv&quot;</span>)</span><br><span class="line">df_entity[<span class="string">&quot;genres&quot;</span>] = df_entity[<span class="string">&quot;genres&quot;</span>].<span class="built_in">map</span>(<span class="keyword">lambda</span> d: d.split(<span class="string">&quot;|&quot;</span>))</span><br><span class="line">df_entity.head()</span><br></pre></td></tr></table></figure>
 <div>
